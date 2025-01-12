@@ -4,10 +4,7 @@ require 'sequel'
 require 'net/http'
 
 
-# Connect to SQLite database
 DB = Sequel.sqlite('products.db')
-DB.run("DROP TABLE IF EXISTS products")
-# Create products table if it doesn't exist
 DB.create_table? :products do
   primary_key :id
   String :title
@@ -30,19 +27,17 @@ def fetch_doc_from_url(url)
       puts "Attempt #{i + 1} failed: #{e.message}"
     end
     if i < 4
-        sleep(2**i) # Exponential backoff
+        sleep(2**i)
     end
   end
 
   raise "Failed to fetch the page" unless response.is_a?(Net::HTTPSuccess)
-  doc = Nokogiri::HTML(response.body)
-  doc
+  Nokogiri::HTML(response.body)
 end
 
 def fetch_reviews_from_product_details(product_link)
   doc = fetch_doc_from_url(product_link)
-  reviews = doc.css('span.global-reviews-all').css('span.cr-original-review-content').map(&:text).map(&:strip).join("\n")
-  reviews
+  doc.css('span.global-reviews-all').css('span.cr-original-review-content').map(&:text).map(&:strip).join("\n")
 end
 
 def fetch_products(url)
@@ -52,7 +47,7 @@ def fetch_products(url)
     title_xpath = 'h2.a-text-normal'
     price_selector = 'span.a-price'
     link_selector = 'a.a-link-normal'
-    doc.css(product_selector).first(5).each do |product_element|
+    doc.css(product_selector).each do |product_element|
       title = product_element.css(title_xpath).xpath('./span').text.strip
       price = product_element.css(price_selector).css('span.a-offscreen').first.text
       product_link = 'https://www.amazon.pl' + product_element.css(link_selector).attr('href').value.strip
@@ -80,5 +75,5 @@ end
 
 print "Enter a search word: "
 search_word = gets.chomp
-url = "https://www.amazon.pl/s?k=#{URI.encode_www_form_component(search_word)}"#+
-fetch_products url
+url = "https://www.amazon.pl/s?k=#{URI.encode_www_form_component(search_word)}"
+fetch_products(url)
