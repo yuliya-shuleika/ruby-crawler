@@ -18,7 +18,7 @@ The crawler retrieves basic product details like title and price, and extends th
    Dynamically search for products using user-provided keywords.
 
 3. **Extended Product Details**  
-   Retrieve additional product details (e.g., reviews) from the product's detail page.
+   Retrieve reviews from the product's detail page.
 
 4. **Product Links**  
    Save links to individual product pages for future reference.
@@ -55,5 +55,6 @@ ___
     ```
 
 3. View the results
+   ![alt text](image.png)
 
 
