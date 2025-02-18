@@ -24,20 +24,6 @@ This project is a Ruby-based web crawler designed to scrape product details from
 5. **Database Integration**  
    Store all fetched product data in an SQLite database using the `Sequel` library.
 
----
-
-## Requirements
-
-To run this project, ensure you have the following installed:
-
-- Ruby (I used version 3.4)
-- SQLite
-- Required Ruby Gems:
-  - `nokogiri`
-  - `open-uri`
-  - `sequel`
-  - `net/http`
-
 ___
 
 ## Usage
