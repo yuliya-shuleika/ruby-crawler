@@ -21,7 +21,6 @@ end
 class Product < Sequel::Model(:products); end
 
 def fetch_doc_from_url(url)
-  puts "Fetching document from URL: #{url.to_s[0...40]}"
   url = URI.parse(url)
   response = nil
 
@@ -44,7 +43,6 @@ def fetch_doc_from_url(url)
           url = URI.parse("https://www.amazon.pl/" + response['Location'])
         end
         response = Net::HTTP.get_response(url)
-        puts "Redirected to: #{response.uri.to_s[0...40]}"
       end
 
       puts "Attempt #{i + 1} returned status: #{response.code} #{response.message}"
