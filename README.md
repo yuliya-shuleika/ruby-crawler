@@ -2,9 +2,7 @@
 
 ## Overview
 
-This project is a Ruby-based web crawler designed to scrape product details from Amazon (or Allegro). It utilizes the `Nokogiri` library for parsing HTML, `Net::HTTP` for fetching web pages, and `Sequel` for interacting with an SQLite database.
-
-The crawler retrieves basic product details like title and price, and extends this functionality to fetch detailed reviews from individual product pages. All the data is stored in an SQLite database for easy retrieval and analysis.
+This project is a Ruby-based web crawler designed to scrape product details from Amazon. It utilizes the `Nokogiri` library for parsing HTML and `Sequel` for interacting with an SQLite database.
 
 ---
 
